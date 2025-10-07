@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обработка одномерного массива</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            margin-top: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-size: 2.5rem;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            color: #2575fc;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+        
+        select, input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        select:focus, input:focus {
+            border-color: #2575fc;
+            outline: none;
+        }
+        
+        .random-params {
+            display: none;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid #2575fc;
+        }
+        
+        .btn {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(to right, #5a0db5, #1c68e6);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .results {
+            margin-top: 30px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e1e1e1;
+        }
+        
+        th {
+            background-color: #2575fc;
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #f1f5ff;
+        }
+        
+        .array-display {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: monospace;
+            border-left: 4px solid #6a11cb;
+        }
+        
+        .highlight {
+            color: #2575fc;
+            font-weight: bold;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: white;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Обработка одномерного массива</h1>
+    <p class="subtitle">Ввод данных через prompt или случайные числа • Вывод через alert или таблицу HTML</p>
+    
+    <div class="container">
+        <div class="card">
+            <h2 class="card-title">Параметры ввода данных</h2>
+            
+            <div class="input-group">
+                <label for="inputMethod">Способ ввода данных:</label>
+                <select id="inputMethod">
+                    <option value="prompt">Через функцию prompt</option>
+                    <option value="random">Случайные числа (Math.random)</option>
+                </select>
+            </div>
+            
+            <div id="randomParams" class="random-params">
+                <div class="input-group">
+                    <label for="arraySize">Размер массива:</label>
+                    <input type="number" id="arraySize" min="1" max="50" value="10">
+                </div>
+                
+                <div class="input-group">
+                    <label for="minValue">Минимальное значение:</label>
+                    <input type="number" id="minValue" value="1">
+                </div>
+                
+                <div class="input-group">
+                    <label for="maxValue">Максимальное значение:</label>
+                    <input type="number" id="maxValue" value="100">
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2 class="card-title">Параметры вывода результатов</h2>
+            
+            <div class="input-group">
+                <label for="outputMethod">Способ вывода результатов:</label>
+                <select id="outputMethod">
+                    <option value="alert">Через функцию alert</option>
+                    <option value="table">В таблицу HTML</option>
+                </select>
+            </div>
+        </div>
+        
+        <button id="processBtn" class="btn">Обработать массив</button>
+        
+        <div id="resultsContainer" class="results">
+            <!-- Результаты будут отображаться здесь -->
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>Разработка алгоритма обработки одномерного числового массива</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputMethod = document.getElementById('inputMethod');
+            const randomParams = document.getElementById('randomParams');
+            const processBtn = document.getElementById('processBtn');
+            const resultsContainer = document.getElementById('resultsContainer');
+            
+            // Показать/скрыть параметры для случайных чисел
+            inputMethod.addEventListener('change', function() {
+                if (this.value === 'random') {
+                    randomParams.style.display = 'block';
+                } else {
+                    randomParams.style.display = 'none';
+                }
+            });
+            
+            // Обработка нажатия кнопки
+            processBtn.addEventListener('click', function() {
+                processArray();
+            });
+            
+            function processArray() {
+                const inputMethodValue = inputMethod.value;
+                const outputMethodValue = document.getElementById('outputMethod').value;
+                
+                let array = [];
+                
+                // Ввод данных в массив
+                if (inputMethodValue === 'prompt') {
+                    array = inputWithPrompt();
+                } else if (inputMethodValue === 'random') {
+                    const size = parseInt(document.getElementById('arraySize').value);
+                    const min = parseInt(document.getElementById('minValue').value);
+                    const max = parseInt(document.getElementById('maxValue').value);
+                    
+                    if (min >= max) {
+                        alert('Минимальное значение должно быть меньше максимального!');
+                        return;
+                    }
+                    
+                    array = generateRandomArray(size, min, max);
+                }
+                
+                // Проверка, что массив не пустой
+                if (array.length === 0) {
+                    alert('Массив пустой!');
+                    return;
+                }
+                
+                // Обработка массива
+                const results = processArrayData(array);
+                
+                // Вывод результатов
+                if (outputMethodValue === 'alert') {
+                    outputWithAlert(array, results);
+                } else if (outputMethodValue === 'table') {
+                    outputWithTable(array, results);
+                }
+            }
+            
+            // Ввод данных через prompt
+            function inputWithPrompt() {
+                let input = prompt('Введите элементы массива через запятую:');
+                
+                if (input === null || input.trim() === '') {
+                    return [];
+                }
+                
+                // Преобразование введенных данных в массив чисел
+                return input.split(',')
+                    .map(item => parseFloat(item.trim()))
+                    .filter(item => !isNaN(item));
+            }
+            
+            // Генерация случайного массива
+            function generateRandomArray(size, min, max) {
+                const array = [];
+                for (let i = 0; i < size; i++) {
+                    array.push(Math.floor(Math.random() * (max - min + 1)) + min);
+                }
+                return array;
+            }
+            
+            // Обработка данных массива
+            function processArrayData(array) {
+                const sum = array.reduce((acc, val) => acc + val, 0);
+                const average = sum / array.length;
+                const min = Math.min(...array);
+                const max = Math.max(...array);
+                
+                // Сортировка массива
+                const sorted = [...array].sort((a, b) => a - b);
+                
+                // Поиск четных и нечетных чисел
+                const even = array.filter(num => num % 2 === 0);
+                const odd = array.filter(num => num % 2 !== 0);
+                
+                return {
+                    sum,
+                    average,
+                    min,
+                    max,
+                    sorted,
+                    even,
+                    odd
+                };
+            }
+            
+            // Вывод результатов через alert
+            function outputWithAlert(array, results) {
+                let message = `Исходный массив: [${array.join(', ')}]\n\n`;
+                message += `Сумма элементов: ${results.sum}\n`;
+                message += `Среднее значение: ${results.average.toFixed(2)}\n`;
+                message += `Минимальный элемент: ${results.min}\n`;
+                message += `Максимальный элемент: ${results.max}\n`;
+                message += `Отсортированный массив: [${results.sorted.join(', ')}]\n`;
+                message += `Четные элементы: [${results.even.join(', ')}]\n`;
+                message += `Нечетные элементы: [${results.odd.join(', ')}]`;
+                
+                alert(message);
+                
+                // Также показываем результаты в таблице для наглядности
+                outputWithTable(array, results);
+            }
+            
+            // Вывод результатов в таблицу HTML
+            function outputWithTable(array, results) {
+                let html = `
+                    <div class="card">
+                        <h2 class="card-title">Результаты обработки массива</h2>
+                        
+                        <div class="array-display">
+                            <strong>Исходный массив:</strong> [${array.join(', ')}]
+                        </div>
+                        
+                        <table>
+                            <tr>
+                                <th>Параметр</th>
+                                <th>Значение</th>
+                            </tr>
+                            <tr>
+                                <td>Сумма элементов</td>
+                                <td class="highlight">${results.sum}</td>
+                            </tr>
+                            <tr>
+                                <td>Среднее значение</td>
+                                <td class="highlight">${results.average.toFixed(2)}</td>
+                            </tr>
+                            <tr>
+                                <td>Минимальный элемент</td>
+                                <td class="highlight">${results.min}</td>
+                            </tr>
+                            <tr>
+                                <td>Максимальный элемент</td>
+                                <td class="highlight">${results.max}</td>
+                            </tr>
+                            <tr>
+                                <td>Количество элементов</td>
+                                <td class="highlight">${array.length}</td>
+                            </tr>
+                            <tr>
+                                <td>Отсортированный массив</td>
+                                <td>[${results.sorted.join(', ')}]</td>
+                            </tr>
+                            <tr>
+                                <td>Четные элементы (${results.even.length})</td>
+                                <td>[${results.even.join(', ')}]</td>
+                            </tr>
+                            <tr>
+                                <td>Нечетные элементы (${results.odd.length})</td>
+                                <td>[${results.odd.join(', ')}]</td>
+                            </tr>
+                        </table>
+                    </div>
+                `;
+                
+                resultsContainer.innerHTML = html;
+            }
+        });
+    </script>
+</body>
+</html>
