@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Задание №5</title>
+</head>
+<body>
+    <h1>Моя веб-страница с JavaScript</h1>
+    
+    <!-- Задание 2: Форма и кнопка -->
+    <div id="form-section">
+        <h2>Форма ввода</h2>
+        <form id="myForm">
+            <label for="name">Имя:</label>
+            <input type="text" id="name" name="name"><br><br>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email"><br><br>
+            
+            <button type="button" onclick="showWelcome()">Отправить</button>
+        </form>
+    </div>
+
+    <!-- Задание 3: Вывод текста три раза -->
+    <div id="welcome-section">
+        <h2>Приветствие</h2>
+        <div id="welcome-message"></div>
+    </div>
+
+    <!-- Задание 4: Функция calculation() -->
+    <div id="calculation-section">
+        <h2>Калькулятор</h2>
+        <input type="number" id="num1" placeholder="Первое число">
+        <input type="number" id="num2" placeholder="Второе число"><br><br>
+        <button onclick="calculation()">Выполнить расчет</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // Задание 3: Скрипт, печатающий текст три раза
+        function printWelcomeText() {
+            let welcomeText = "Добро пожаловать на мою страницу! Это JavaScript";
+            let output = "";
+            
+            for (let i = 0; i < 3; i++) {
+                output += "<p>" + welcomeText + "</p>";
+            }
+            
+            document.getElementById("welcome-message").innerHTML = output;
+        }
+
+        // Функция для кнопки формы
+        function showWelcome() {
+            let name = document.getElementById("name").value;
+            if (name) {
+                alert("Привет, " + name + "! Добро пожаловать на мою страницу!");
+            } else {
+                alert("Пожалуйста, введите ваше имя!");
+            }
+        }
+
+        // Задание 4: Функция calculation()
+        function calculation() {
+            let num1 = parseFloat(document.getElementById("num1").value);
+            let num2 = parseFloat(document.getElementById("num2").value);
+            let resultElement = document.getElementById("result");
+            
+            if (isNaN(num1) || isNaN(num2)) {
+                resultElement.innerHTML = "<p style='color: red;'>Пожалуйста, введите оба числа!</p>";
+                return;
+            }
+            
+            let sum = num1 + num2;
+            let difference = num1 - num2;
+            let product = num1 * num2;
+            let quotient = num2 !== 0 ? num1 / num2 : "неопределено (деление на ноль)";
+            
+            let resultHTML = `
+                <h3>Результаты расчетов:</h3>
+                <p>Сумма: ${num1} + ${num2} = ${sum}</p>
+                <p>Разность: ${num1} - ${num2} = ${difference}</p>
+                <p>Произведение: ${num1} × ${num2} = ${product}</p>
+                <p>Частное: ${num1} ÷ ${num2} = ${quotient}</p>
+            `;
+            
+            resultElement.innerHTML = resultHTML;
+        }
+
+        // Выводим приветствие при загрузке страницы
+        window.onload = function() {
+            printWelcomeText();
+        };
+    </script>
+</body>
+</html>
