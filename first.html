@@ -13,14 +13,20 @@
                 color: white;
                 background-color: black;
             }
-
         </style>
     </head>
     <body>
         <script>
-           a=prompt("Введите имя");
-           b=parseInt(prompt("Год рождения"));
-           document.write(a+":"+(2025-b));
+           let b=0;
+          a=prompt("Введите имя сказочного персонажа, который говорил,что от всех ушел");
+          if (a == "Колобок")
+          {
+            b=b+1;
+          }
+          else {
+            b=b 
+          }
+          alert("Количество отгаданных загадок"+b)
         </script>
     </body>
 </html>
