@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детская студия рисования "Волшебная кисточка"</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #6a5acd;
+            --secondary-color: #ffb6c1;
+            --accent-color: #ffd700;
+        }
+        
+        body {
+            font-family: 'Comic Neue', cursive, sans-serif;
+        }
+        
+        .navbar-brand {
+            font-weight: bold;
+            color: var(--primary-color) !important;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(106, 90, 205, 0.8), rgba(255, 182, 193, 0.8)), url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 150px 0;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+        
+        .card {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: #5a4abc;
+            border-color: #5a4abc;
+        }
+        
+        .gallery-img {
+            height: 250px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+        
+        .testimonial-card {
+            background-color: #f8f9fa;
+            border-left: 5px solid var(--secondary-color);
+        }
+        
+        .price-card {
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        
+        .price-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .price-card.featured {
+            border: 2px solid var(--accent-color);
+            position: relative;
+        }
+        
+        .featured-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: #333;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+        }
+        
+        .social-icons a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-palette"></i> Волшебная кисточка
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">О нас</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#programs">Программы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Галерея</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#prices">Цены</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Отзывы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Контакты</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Герой-секция -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Детская студия рисования</h1>
+            <p class="lead">Развиваем творческие способности вашего ребенка через искусство</p>
+            <a href="#contact" class="btn btn-primary btn-lg mt-3">Записаться на пробное занятие</a>
+        </div>
+    </section>
+
+    <!-- О нас -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">О нашей студии</h2>
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Дети рисуют" class="img-fluid rounded">
+                </div>
+                <div class="col-md-6">
+                    <p>Наша студия "Волшебная кисточка" - это пространство, где дети от 3 до 12 лет могут раскрыть свой творческий потенциал и научиться выражать себя через искусство.</p>
+                    <p>Мы предлагаем:</p>
+                    <ul>
+                        <li>Индивидуальный подход к каждому ребенку</li>
+                        <li>Профессиональных педагогов с художественным образованием</li>
+                        <li>Разнообразные техники рисования и материалы</li>
+                        <li>Творческую атмосферу и вдохновляющую обстановку</li>
+                        <li>Регулярные выставки детских работ</li>
+                    </ul>
+                    <p>Наша цель - не просто научить детей рисовать, а развить их воображение, креативное мышление и уверенность в себе.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Программы -->
+    <section id="programs" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">Наши программы</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img-top" alt="Малыши рисуют">
+                        <div class="card-body">
+                            <h5 class="card-title">Для малышей (3-5 лет)</h5>
+                            <p class="card-text">Знакомство с цветами и формами, развитие мелкой моторики через рисование пальчиками, губкой и другими нетрадиционными техниками.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img-top" alt="Дети рисуют">
+                        <div class="card-body">
+                            <h5 class="card-title">Для детей 6-9 лет</h5>
+                            <p class="card-text">Изучение основ композиции, цвета и перспективы. Работа с акварелью, гуашью, пастелью. Развитие наблюдательности и воображения.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img-top" alt="Подростки рисуют">
+                        <div class="card-body">
+                            <h5 class="card-title">Для подростков (10-12 лет)</h5>
+                            <p class="card-text">Углубленное изучение техник рисования, работа с различными материалами, основы академического рисунка и живописи.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Галерея -->
+    <section id="gallery" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">Галерея работ</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="gallery-img w-100" alt="Детский рисунок 1">
+                </div>
+                <div class="col-md-4">
+                    <img src="https://images.unsplash.com/photo-1549277513-f1b32fe1f8f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="gallery-img w-100" alt="Детский рисунок 2">
+                </div>
+                <div class="col-md-4">
+                    <img src="https://images.unsplash.com/photo-1578632749014-ca77efd052eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="gallery-img w-100" alt="Детский рисунок 3">
+                </div>
+                <div class="col-md-4">
+                    <img src="https://images.unsplash.com/photo-1578911372313-9c8c5248aaad?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="gallery-img w-100" alt="Детский рисунок 4">
+                </div>
+                <div class="col-md-4">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="gallery-img w-100" alt="Детский рисунок 5">
+                </div>
+                <div class="col-md-4">
+                    <img src="https://images.unsplash.com/photo-1571019614241-7b1d46271f5b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="gallery-img w-100" alt="Детский рисунок 6">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Цены -->
+    <section id="prices" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">Наши цены</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card price-card text-center p-4">
+                        <h4>Разовое занятие</h4>
+                        <h2 class="text-primary">800 ₽</h2>
+                        <ul class="list-unstyled my-4">
+                            <li>1 занятие (60 минут)</li>
+                            <li>Все материалы включены</li>
+                            <li>Индивидуальный подход</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary">Записаться</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card price-card text-center p-4 featured">
+                        <div class="featured-badge">Популярный</div>
+                        <h4>Абонемент на месяц</h4>
+                        <h2 class="text-primary">2500 ₽</h2>
+                        <ul class="list-unstyled my-4">
+                            <li>4 занятия (по 60 минут)</li>
+                            <li>Все материалы включены</li>
+                            <li>Скидка 20% на мастер-классы</li>
+                            <li>Участие в выставках</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary">Купить</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card price-card text-center p-4">
+                        <h4>Индивидуальные занятия</h4>
+                        <h2 class="text-primary">1200 ₽</h2>
+                        <ul class="list-unstyled my-4">
+                            <li>1 занятие (60 минут)</li>
+                            <li>Персональный подход</li>
+                            <li>Гибкий график</li>
+                            <li>Все материалы включены</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary">Записаться</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Отзывы -->
+    <section id="testimonials" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">Отзывы родителей</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card testimonial-card p-3">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" class="rounded-circle me-3" width="60" alt="Мария">
+                            <div>
+                                <h5 class="mb-0">Мария</h5>
+                                <small>Мама Софии (6 лет)</small>
+                            </div>
+                        </div>
+                        <p>Моя дочь ходит в студию уже полгода, и я вижу огромный прогресс! Она стала более уверенной в себе, с удовольствием рисует дома и даже участвовала в выставке. Спасибо педагогам за терпение и творческий подход!</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card testimonial-card p-3">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://randomuser.me/api/portraits/men/54.jpg" class="rounded-circle me-3" width="60" alt="Алексей">
+                            <div>
+                                <h5 class="mb-0">Алексей</h5>
+                                <small>Папа Максима (8 лет)</small>
+                            </div>
+                        </div>
+                        <p>Сын всегда любил рисовать, но здесь он научился настоящим техникам. Преподаватели умеют заинтересовать детей, занятия проходят в дружеской атмосфере. Рекомендую всем родителям!</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card testimonial-card p-3">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" class="rounded-circle me-3" width="60" alt="Ольга">
+                            <div>
+                                <h5 class="mb-0">Ольга</h5>
+                                <small>Мама близнецов (5 лет)</small>
+                            </div>
+                        </div>
+                        <p>Вожу обоих детей в студию, и они в восторге! Занятия помогают развивать не только творческие способности, но и усидчивость, внимание. Дети с нетерпением ждут каждого занятия!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">Контакты и запись</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Наши контакты</h4>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> г. Москва, ул. Творческая, д. 15</p>
+                    <p><i class="fas fa-phone me-2"></i> +7 (495) 123-45-67</p>
+                    <p><i class="fas fa-envelope me-2"></i> info@magicbrush.ru</p>
+                    <p><i class="fas fa-clock me-2"></i> Пн-Пт: 9:00-20:00, Сб-Вс: 10:00-18:00</p>
+                    
+                    <h4 class="mt-4">Мы в соцсетях</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h4>Записаться на пробное занятие</h4>
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Имя ребенка</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="age" class="form-label">Возраст</label>
+                            <input type="number" class="form-control" id="age" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="parent" class="form-label">Имя родителя</label>
+                            <input type="text" class="form-control" id="parent" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Телефон</label>
+                            <input type="tel" class="form-control" id="phone" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Отправить заявку</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="py-4 text-center">
+        <div class="container">
+            <p>&copy; 2023 Детская студия рисования "Волшебная кисточка". Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
